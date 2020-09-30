@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+//Create a structure of node
 struct node
 {
     int info;
@@ -11,8 +11,9 @@ int main()
 {
     int n;
     scanf("%d", &n);
-    struct node *head = (struct node *)malloc(sizeof(struct node));
+    struct node *head = (struct node *)malloc(sizeof(struct node));// Base Node
     struct node *temp;
+    // Program for Create/Insertion insertion in Linked List by Sorted Form 
     for (int i = 0; i < n; i++)
     {
         int value;
@@ -33,11 +34,11 @@ int main()
     }
     int k;
     scanf("%d", &k);
-    int position = searchValue(head, k);
+    int position = searchValue(head, k);// Search Value
     printf("%d", position);
     return 0;
 }
-
+//Program For Search Value in Sorted Linked List
 int searchValue(struct node *head, int k)
 {
     struct node *temp = head;
