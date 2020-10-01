@@ -8,7 +8,7 @@ struct node
 };
 struct node *insertValue(struct node *, int);
 
-int main()
+void main()
 {
     int n;
     int counter=0;
@@ -48,7 +48,7 @@ int main()
     }
     
     printf("The no. of steps took to complete the insertion was %d", counter);
-    return 0;
+    
 }
 
 struct node *insertValue(struct node *head, int k)
