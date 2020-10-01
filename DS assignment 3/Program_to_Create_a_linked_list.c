@@ -32,7 +32,7 @@ int main()
     }
     else
     {
-        printf("Why did you ran this program if you did not wanted to make a linked list\n");
+        printf("Sorry!!!...Invalid Input\n");
         printf("Program exited");
         goto end;
     }
@@ -68,7 +68,7 @@ int main()
     }
     else
     {
-        printf("At last the linked list is..");
+        printf("Your Linked List..\n");
         printList(head);
     }
 
@@ -81,8 +81,9 @@ void printList(struct node *head)
     printf("\n");
     while (temp != NULL)
     {
-        printf("%d ", temp->info);
-        temp = temp->link;
+       	printf("-->%d Address of node: %d",temp->info,temp);
+  	    printf("\t Next:%d\n",temp->link); 
+  	    temp = temp->link;
     }
     printf("\n");
 }
