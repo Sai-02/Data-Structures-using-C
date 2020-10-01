@@ -12,6 +12,7 @@ int main()
 {
     int n;
     int counter=0;
+    printf("Enter the size of the linked list:");
     scanf("%d", &n);
     struct node *head = (struct node *)malloc(sizeof(struct node));
     head->link=NULL;
@@ -20,6 +21,7 @@ int main()
     {
         counter++;
         int value;
+        printf("\nEnter the value of node:");
         scanf("%d", &value);
         if (i == 0)
         {
