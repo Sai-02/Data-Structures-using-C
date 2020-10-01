@@ -9,7 +9,7 @@ struct node
     struct node *next;
     struct node *prev;
 };
-int main()
+void main()
 {
     int n;
     scanf("%d", &n);
