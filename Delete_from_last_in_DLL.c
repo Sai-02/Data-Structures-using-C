@@ -38,7 +38,7 @@ int main()
             current = current->next;
         }
     }
-    int value;
+    void value;
     scanf("%d", &value);
     head = deleteFromLast(head, value);
 
@@ -56,7 +56,7 @@ int main()
         temp = temp->prev;
     }
 
-    return 0;
+
 }
 
 struct node *deleteFromLast(struct node *head, int value)
