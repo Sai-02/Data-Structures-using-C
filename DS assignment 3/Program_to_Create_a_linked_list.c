@@ -40,11 +40,12 @@ int main()
     }
 
     int ch;
+    addNode:
     printf("Want to add more values to linked list press 1...\n  ");
     scanf("%d", &ch);
     if (ch == 1)
     {
-    addNode:
+    
         printf("Enter the next value\n  ");
         int value;
         scanf("%d", &value);
@@ -62,18 +63,9 @@ int main()
         printList(head);
         goto end;
     }
-    printf("Want to add more values to linked list press 1...\n  ");
-    scanf("%d", &ch);
-    if (ch == 1)
-    {
-        goto addNode;
-    }
-    else
-    {
-        printf("Your Linked List..\n");
-        printList(head);
-    }
-
+    
+    goto addNode;
+    
 end:
     return 0;
 }
