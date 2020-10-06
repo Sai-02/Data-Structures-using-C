@@ -23,7 +23,7 @@ int main()
 
     printf("Hello there!!\n\n");
 
-    printf("Enter the value to be added");
+    printf("Enter the value to be added\n");
     int firstValue;
     scanf("%d", &firstValue);
     head->info = firstValue;
@@ -69,13 +69,15 @@ askAgain:
         // printf("\nQueue after this operation is  ");
         printQueue(head);
     }
-    else if(userValue==3){
-        if(head==NULL){
+    else if (userValue == 3)
+    {
+        if (head == NULL)
+        {
             printf("\nQueue is empty\n");
-
         }
-        else{
-            printf("\n%d\n",head->info);
+        else
+        {
+            printf("\n%d\n", head->info);
         }
     }
     else
