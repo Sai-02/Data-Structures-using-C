@@ -69,6 +69,15 @@ askAgain:
         // printf("\nQueue after this operation is  ");
         printQueue(head);
     }
+    else if(userValue==3){
+        if(head==NULL){
+            printf("\nQueue is empty\n");
+
+        }
+        else{
+            printf("\n%d\n",head->info);
+        }
+    }
     else
     {
         printf("Queue at last is..\n");
@@ -82,7 +91,7 @@ end:
 }
 void ask()
 {
-    printf("Press 1 for enqueue     Press 2 for dequeue   Press 0 to exit...\n  ");
+    printf("Press 1 for enqueue     Press 2 for dequeue   Press 3 for front    Press 0 to exit...\n  ");
 }
 void printQueue(struct node *head)
 {
