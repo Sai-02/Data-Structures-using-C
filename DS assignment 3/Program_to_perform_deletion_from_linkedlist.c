@@ -1,139 +1,96 @@
-//Write a program to perform deletion from LinkedList
+// Program to perform deletion from linked list.
 
-//Name-Sai Prashant Saxena
-//Roll no-02220902719
-
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 
 struct node
 {
-    int info;
-    struct node *link;
+	int info;
+	struct node *link;
 };
-void printList(struct node *);
-struct node *insertValue(int);
-struct node *deleteValue(struct node *, int);
+
+void insertion(struct node *);
+void print(struct node *);
+void deletion(struct node *);
 
 int main()
 {
-    struct node *head = (struct node *)malloc(sizeof(struct node));
-    head->link = NULL;
-    struct node *temp = head;
-
-    printf("Hello there!!\nWant to create a Linked List press 1...\n ");
-    int ask;
-    scanf("%d", &ask);
-    if (ask == 1)
-    {
-        printf("\nEnter the value of head\n ");
-        int value;
-        scanf("%d", &value);
-        head->info = value;
-        printList(head);
-        temp = head;
-    }
-    else
-    {
-        printf("\nProgram exited");
-        goto end;
-    }
-
-askAgain:
-    printf("\nPress 1 for adding value\nPress 2 for deleting value\nPress 0 to exit\n ");
-    scanf("%d", &ask);
-    if (ask == 1)
-    {
-        printf("\nEnter the value to be added\n ");
-        int value;
-        scanf("%d", &value);
-        if (head == NULL)
-        {
-
-            head = insertValue(value);
-            temp = head;
-        }
-        else
-        {
-
-            temp->link = insertValue(value);
-            temp = temp->link;
-        }
-        printf("Thus the new list is");
-        printList(head);
-    }
-    else if (ask == 2)
-    {
-        printf("Enter the value to be deleted\n ");
-        int value;
-        scanf("%d", &value);
-        head = deleteValue(head, value);
-    }
-    else
-    {
-        printf("The linked list is..");
-        printList(head);
-        goto end;
-    }
-    goto askAgain;
-
-end:
-    return 0;
+	int value,n;
+	struct node *temp=NULL;
+	struct node *start=(struct node *)malloc(sizeof(struct node));
+	printf("\nEnter the value of first node : ");
+	scanf("%d",&value);
+	start->info=value;
+	start->link=NULL;
+	temp=start;
+	
+	printf("\nIf you want to add new node press 1 else press 0 : ");
+	scanf("%d",&n);
+	while(n==1)
+	{
+		insertion(temp);
+		temp=temp->link;
+		printf("\nIf you want to add new node press 1 else press 0 : ");
+		scanf("%d",&n);
+	}
+	printf("\nThe linked list is : ");
+	print(start);
+	
+	printf("\n\n\n\nIf you want to delete node from last press 1 else press 0 : ");
+	scanf("%d",&n);
+	while(n==1)
+	{
+		if(start->link==NULL)
+		{
+			start=NULL;
+			free(start);
+			printf("\nThe linked list after deletion is : ");
+			print(start);
+			printf("\n\nThe linked list is empty");
+			return 0;
+		}
+		else
+			deletion(start);
+			printf("\nThe linked list after deletion is : ");
+			print(start);
+			printf("\n\nIf you want to delete node from last press 1 else press 0 : ");
+			scanf("%d",&n);
+	}
+	return 0;
 }
-struct node *insertValue(int value)
-{
-    struct node *new = (struct node *)malloc(sizeof(struct node));
-    new->info = value;
-    new->link = NULL;
-    return new;
-}
-struct node *deleteValue(struct node *head, int value)
-{
-    if (head == NULL)
-    {
-        printf("Linked is already empty!!!");
-        return head;
-    }
-    struct node *current = head, *previous;
-    if (head->info == value)
-    {
-        head = head->link;
-        free(current);
-        printf("Linked List after deletion is..");
-        printList(head);
-        return head;
-    }
-    while (current != NULL)
-    {
-        if (current->info == value)
-        {
-            previous->link = current->link;
-            free(current);
-            printf("Linked List after deletion is..");
-            printList(head);
-            return head;
-        }
-        previous = current;
-        current = current->link;
-    }
 
-    printf("Value not found in Linked List!!\n");
-
-    return head;
-}
-void printList(struct node *head)
+void insertion(struct node *temp)
 {
-    if (head == NULL)
-    {
-        printf(" Empty\n");
-        return;
-    }
-    struct node *temp = head;
-    printf("\n");
-    while (temp != NULL)
-    {
-        printf("%d ", temp->info);
-        temp = temp->link;
-    }
-    printf("\n");
+	int value;
+	struct node *next=(struct node *)malloc(sizeof(struct node));
+	printf("\nEnter the value : ");
+	scanf("%d",&value);
+	next->info=value;
+	next->link=NULL;
+	temp->link=next;
+}
+
+void print(struct node *start)
+{
+	struct node *ptr;
+	ptr=start;
+	while(ptr!=NULL)
+	{
+		printf("%d ",ptr->info);
+		ptr=ptr->link;
+	}
+}
+
+void deletion(struct node *start)
+{
+	struct node *prev,*ptr;
+	prev=start;
+	ptr=start->link;
+	while(ptr->link!=NULL)
+	{
+		prev=ptr;
+		ptr=ptr->link;
+	}
+	prev->link=NULL;
+	free(ptr);
 }
