@@ -1,8 +1,3 @@
-//Write a program to implement deletion,insertion and display LinkedList
-
-//Name-Sai Prashant Saxena
-//Roll no-02220902719
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,113 +6,113 @@ struct node
     int info;
     struct node *link;
 };
-void printList(struct node *);
-struct node *insertValue(struct node *, int);
-struct node *deleteValue(struct node *, int);
+
+struct node *insertion(struct node *);
+struct node *deletion(struct node *);
+void print(struct node *);
 
 int main()
 {
-    struct node *head = (struct node *)malloc(sizeof(struct node));
-    head->link = NULL;
-    struct node *temp = head;
-
-    printf("Hello there!!\nWant to create a Linked List press 1...\n ");
-    int ask;
-    scanf("%d", &ask);
-    if (ask == 1)
-    {
-        printf("\nEnter the value of head\n ");
-        int value;
-        scanf("%d", &value);
-        head->info = value;
-        printList(head);
-        temp = head;
-    }
-    else
-    {
-        printf("\nProgram exited");
-        goto end;
-    }
-
-askAgain:
-    printf("\nPress 1 for adding value\nPress 2 for deleting value\nPress 0 to exit\n ");
-    scanf("%d", &ask);
-    if (ask == 1)
-    {
-        printf("\nEnter the value to be added\n ");
-        int value;
-        scanf("%d", &value);
-        head = insertValue(head, value);
-        printf("Thus the new list is");
-        printList(head);
-    }
-    else if (ask == 2)
-    {
-        printf("Enter the value to be deleted\n ");
-        int value;
-        scanf("%d", &value);
-        head = deleteValue(head, value);
-    }
-    else
-    {
-        printf("The linked list is..");
-        printList(head);
-        goto end;
-    }
-    goto askAgain;
-
-end:
-    return 0;
+	int n,ch=1,choice;
+	struct node *temp;
+	struct node *start=(struct node *)malloc(sizeof(struct node));
+	start->link=NULL;
+	temp=start;
+	
+	printf("\nIf you want to create Linked list press 1 : ");
+	scanf("%d",&n);
+	if(n==1)
+	{
+		int value;
+		printf("\nEnter the value of first node : ");
+		scanf("%d",&value);
+		start->info=value;
+		temp=start;
+	}
+	else
+	{
+		return 0;
+	}
+	
+	while(ch==1)
+	{
+		printf("\nPress 1 to add a new node");
+		printf("\nPress 2 to delete a node");
+		printf("\nPress 3 to print Linked list");
+		printf("\n\nYour choice is : ");
+		scanf("%d",&choice);
+		
+		switch(choice)
+		{case 1 : start = insertion(start);
+		          break;
+		 case 2 : start = deletion(start);
+		          break;
+		 case 3 : print(start);
+		          break;
+		 default: printf("\nWrong choice entered");
+		          break;		
+		}
+		printf("\nTf you want to perform more operations on Linked list press 1 else 0 : ");
+		scanf("%d",&ch);
+	}
+	
 }
-struct node *insertValue(struct node *head, int value)
-{
 
-    struct node *temp = head;
-    struct node *new = (struct node *)malloc(sizeof(struct node));
-    new->info = value;
-    new->link = NULL;
-    if (head == NULL)
+struct node *insertion(struct node *start)
+{
+	int value;
+	printf("\nEnter the value to be added : ");
+    scanf("%d", &value);
+		          
+	struct node *temp = start;
+    struct node *next = (struct node *)malloc(sizeof(struct node));
+    next->info = value;
+    next->link = NULL;
+    if (start == NULL)
     {
-        return new;
+        return next;
     }
-    if (head->info > value)
+    if (start->info > value)
     {
-        new->link = head;
-        head = new;
-        return head;
+        next->link = start;
+        start = next;
+        return start;
     }
     while (temp->link != NULL)
     {
         if (temp->link->info > value)
         {
-            new->link = temp->link;
-            temp->link = new;
-            return head;
+            next->link = temp->link;
+            temp->link = next;
+            return start;
         }
         temp = temp->link;
     }
-    temp->link = new;
-    return head;
+    temp->link = next;
+    return start;    
 }
-struct node *deleteValue(struct node *head, int value)
+
+struct node *deletion(struct node *start)
 {
-    if (head == NULL)
+	int value;
+	printf("\nEnter the value to be deleted : ");
+    scanf("%d", &value);
+		          
+	if (start == NULL)
     {
-        printf("Linked is already empty!!!");
-        return head;
+        printf("\nThe linked list is empty\n");
+        return start;
     }
-    struct node *current = head, *previous;
-    if (head->info > value)
+    struct node *current = start, *previous;
+    if (start->info > value)
     {
         current = NULL;
     }
-    if (head->info == value)
+    if (start->info == value)
     {
-        head = head->link;
+        start = start->link;
         free(current);
-        printf("Linked List after deletion is..");
-        printList(head);
-        return head;
+        return start;
     }
     while (current != NULL)
     {
@@ -129,30 +124,28 @@ struct node *deleteValue(struct node *head, int value)
         {
             previous->link = current->link;
             free(current);
-            printf("Linked List after deletion is..");
-            printList(head);
-            return head;
+            return start;
         }
         previous = current;
         current = current->link;
     }
 
-    printf("Value not found in Linked List!!\n");
+    printf("\nItem is not found in Linked list\n");
 
-    return head;
+    return start;
 }
-void printList(struct node *head)
+
+void print(struct node *start)
 {
-    if (head == NULL)
+	if (start == NULL)
     {
-        printf(" Empty\n");
+        printf("\nThe linked list is empty\n");
         return;
     }
-    struct node *temp = head;
-    printf("\n");
+    struct node *temp = start;
     while (temp != NULL)
     {
-        printf("%d ", temp->info);
+        printf("%d  ", temp->info);
         temp = temp->link;
     }
     printf("\n");
