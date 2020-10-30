@@ -1,9 +1,5 @@
-//DSA
 
 //Write a program to create a linkedList
-
-//Name-Sai Prashant Saxena
-//Roll no-02220902719
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,10 +16,10 @@ int main()
     struct node *head = (struct node *)malloc(sizeof(struct node));
     struct node *temp = head;
     printf("Hello there!!");
-    printf("\nWant to create a linked list press Y.....\n\t\t");
+    printf("\nWant to create a linked list press 1.....\n\t\t");
     char c;
     scanf("%c", &c);
-    if (c == 'Y' || c == 'y')
+    if (c == 1)
     {
         printf("Enter the value of head\n  ");
         int value;
@@ -75,7 +71,7 @@ void printList(struct node *head)
     printf("\n");
     while (temp != NULL)
     {
-       	printf("-->%d Address of node: %d",temp->info,temp);
+       	printf("-->%d ",temp->info);
   	    printf("\t Next:%d\n",temp->link); 
   	    temp = temp->link;
     }
