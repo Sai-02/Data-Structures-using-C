@@ -11,14 +11,17 @@ struct node *removeValue(struct node *, int);
 
 int main()
 {
-    int n;
+    int n,i;
+    char ch;
+    printf("Enter the Size of linked list:");
     scanf("%d", &n);
     struct node *head = (struct node *)malloc(sizeof(struct node));
     head->link = NULL;
     struct node *temp;
-    for (int i = 0; i < n; i++)
-    {
+    for ( i = 0; i < n; i++)
+    {    
         int value;
+        printf("Enter the node value:\n");
         scanf("%d", &value);
         if (i == 0)
         {
@@ -35,30 +38,35 @@ int main()
         }
     }
     int k;
+    do
+    {
+	
+    printf("\nEnter the value to be deleted:");
     scanf("%d", &k);
     head = removeValue(head, k);
     temp = head;
-
+    printf("\nNew Linked list:");
     while (temp != NULL)
-    {
+    {  
         printf("%d ", temp->info);
         temp = temp->link;
     }
-
+ printf("\nWant to delete more(y/n):");
+    scanf("%s",&ch);
+}while(ch=='y'||ch=='Y');
     return 0;
 }
 struct node *removeValue(struct node *head, int k)
 {
     struct node *temp = head;
     if (head == NULL)
-    {
-        return NULL;
+    {   printf("\nUndeflow ...Linked list is empty");
     }
 
-    if (k == 1)
+if (k == temp->info)
     {
         head = head->link;
-        free(temp);
+      
         return head;
     }
     struct node *prev = head;
@@ -68,13 +76,12 @@ struct node *removeValue(struct node *head, int k)
         if (temp->info == k)
         {
             prev->link = temp->link;
-            free(temp);
+           
             return head;
         }
         prev = temp;
         temp = temp->link;
     }
-
+      free(temp);
     return head;
 }
-
