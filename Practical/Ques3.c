@@ -18,9 +18,9 @@ struct node
     struct node *link;
 };
 void delete ();
-void insert();
-void print();
 void reverse();
+void print();
+void insert(int);
 
 struct node *head = NULL, *temp = NULL;
 
@@ -34,7 +34,10 @@ int main()
         scanf("%d", &choice);
         if (choice == 1)
         {
-            insert();
+            printf("\nEnter the position of emplyee\n");
+            int position;
+            scanf("%d", &position);
+            insert(position);
         }
         else if (choice == 2)
         {
@@ -57,58 +60,43 @@ int main()
     return 0;
 }
 
-void insert()
+void insert(int position)
 {
     printf("Enter the Roll no of student\t");
     int roll_no;
     printf("\nEnter the name of student\n");
     scanf("%d ", &roll_no);
     char Name[20];
-
     scanf("%[^\n]%*c", Name);
-
-    if (head == NULL)
+    struct node *New = (struct node *)malloc(sizeof(struct node));
+    New->link = NULL;
+    New->Roll_no = roll_no;
+    for (int i = 0; i < 20; i++)
     {
-        head = (struct node *)malloc(sizeof(struct node));
-
-        head->Roll_no = roll_no;
-        for (int i = 0; i < 20; i++)
+        New->name[i] = Name[i];
+    }
+    if (position == 1)
+    {
+        New->link = head;
+        head = New;
+    }
+    struct node *prev = NULL, *curr = head;
+    int count = 1;
+    while (curr != NULL)
+    {
+        prev = curr;
+        curr = curr->link;
+        if (count == position)
         {
-            head->name[i] = Name[i];
+            prev->link = New;
+            New->link = curr;
+            return;
         }
-        head->link = NULL;
-        temp = head;
     }
-    else
-    {
-        struct node *new = (struct node *)malloc(sizeof(struct node));
-        new->link = NULL;
-        new->Roll_no = roll_no;
-        for (int i = 0; i < 20; i++)
-        {
-            new->name[i] = Name[i];
-        }
-        temp->link = new;
-        temp = temp->link;
-    }
+    prev->link = New;
+    New->link = curr;
 }
-void print()
-{
-    if (head == NULL)
-    {
-        printf("\nList is empty!!!\n");
-        return;
-    }
-    printf("\n\n");
-    temp = head;
-    while (temp != NULL)
-    {
-        printf("Roll no-%d\n", temp->Roll_no);
-        printf("Name of student is %s\n\n\n", temp->name);
-        temp = temp->link;
-    }
-    temp = head;
-}
+
 void delete ()
 {
     if (head == NULL)
@@ -163,4 +151,21 @@ void reverse()
         curr->link = head;
         head = curr;
     }
+}
+void print()
+{
+    if (head == NULL)
+    {
+        printf("\nList is empty!!!\n");
+        return;
+    }
+    printf("\n\n");
+    temp = head;
+    while (temp != NULL)
+    {
+        printf("Roll no-%d\n", temp->Roll_no);
+        printf("Name of student is %s\n\n\n", temp->name);
+        temp = temp->link;
+    }
+    temp = head;
 }
