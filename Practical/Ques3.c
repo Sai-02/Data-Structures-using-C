@@ -20,6 +20,7 @@ struct node
 void delete ();
 void insert();
 void print();
+void reverse();
 
 struct node *head = NULL, *temp = NULL;
 
@@ -28,7 +29,7 @@ int main()
     while (1)
     {
 
-        printf("Press 1 for new student's data\n Press 2 for deleting a student's data\n Press 3 for printing list \n Press any other key to exit....\n");
+        printf("Press 1 for new student's data\n Press 2 for deleting a student's data\n Press 3 for printing list \n Press 4 for reversing the list\n Press any other key to exit....\n");
         int choice;
         scanf("%d", &choice);
         if (choice == 1)
@@ -42,6 +43,10 @@ int main()
         else if (choice == 3)
         {
             print();
+        }
+        else if (choice == 4)
+        {
+            reverse();
         }
         else
         {
@@ -139,4 +144,23 @@ void delete ()
         curr = curr->link;
     }
     printf("\nRoll numbered entered does not exist!!!\n\n");
+}
+
+void reverse()
+{
+    if (head == NULL)
+    {
+        printf("\nList is empty\n");
+        return;
+    }
+    struct node *curr = head;
+    struct node *next = head->link;
+    head->link = NULL;
+    while (next != NULL)
+    {
+        curr = next;
+        next = next->link;
+        curr->link = head;
+        head = curr;
+    }
 }
