@@ -53,10 +53,10 @@ struct node *insertValue(struct node *head, int k)
         return new;
     }
 
-    struct node* last=head;
-    while(last->link!=head){
-        last=last->link;
+    struct node *last = head;
+    while (last->link != head)
+    {
+        last = last->link;
     }
     //Insertion in beginning
-    
 }
