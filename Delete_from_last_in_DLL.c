@@ -55,8 +55,6 @@ void main()
         printf("%d ", temp->info);
         temp = temp->prev;
     }
-
-
 }
 
 struct node *deleteFromLast(struct node *head, int value)
