@@ -13,14 +13,17 @@ int knapSack(int W, int weight[], int val[], int n)
     {
         for (wt = 0; wt <= W; wt++) 
         {
-            if (i == 0 || wt == 0)
+            if (i == 0 || wt == 0){
                 K[i][wt] = 0;
+                continue;
+            }
 
-            else if (weight[i - 1] <= wt)
+            else if (weight[i - 1] <= wt){
                 K[i][wt] = greater(val[i - 1] + K[i - 1][wt - weight[i - 1]], K[i - 1][wt]);
-
-            else
-                K[i][wt] = K[i - 1][wt];
+                continue;
+            }
+            
+            K[i][wt] = K[i - 1][wt];
         }
 
     }
