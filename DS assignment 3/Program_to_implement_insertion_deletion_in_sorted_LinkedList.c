@@ -62,45 +62,45 @@ struct node *insertion(struct node *start)
 {
 	int value;
 	printf("\nEnter the value to be added : ");
-    scanf("%d", &value);
+    	scanf("%d", &value);
 		          
 	struct node *temp = start;
-    struct node *next = (struct node *)malloc(sizeof(struct node));
-    next->info = value;
-    next->link = NULL;
-    if (start == NULL)
-    {
-        return next;
-    }
-    if (start->info > value)
-    {
-        next->link = start;
-        start = next;
-        return start;
-    }
-    while (temp->link != NULL)
-    {
-        if (temp->link->info > value)
-        {
-            next->link = temp->link;
-            temp->link = next;
-            return start;
-        }
-        temp = temp->link;
-    }
-    temp->link = next;
-    return start;    
+    	struct node *next = (struct node *)malloc(sizeof(struct node));
+    	next->info = value;
+    	next->link = NULL;
+    	if (start == NULL)
+    	{
+        	return next;
+    	}
+    	if (start->info > value)
+    	{
+        	next->link = start;
+        	start = next;
+        	return start;
+    	}
+    	while (temp->link != NULL)
+    	{
+        	if (temp->link->info > value)
+        	{
+        	    next->link = temp->link;
+         	   temp->link = next;
+         	   return start;
+        	}
+        	temp = temp->link;
+    	}
+    	temp->link = next;
+    	return start;    
 }
 
 struct node *deletion(struct node *start)
 {
-	int value;
-	printf("\nEnter the value to be deleted : ");
+    int value;
+    printf("\nEnter the value to be deleted : ");
     scanf("%d", &value);
 		          
-	if (start == NULL)
+    if (start == NULL)
     {
-        printf("\nThe linked list is empty\n");
+     	printf("\nThe linked list is empty\n");
         return start;
     }
     struct node *current = start, *previous;
@@ -137,7 +137,7 @@ struct node *deletion(struct node *start)
 
 void print(struct node *start)
 {
-	if (start == NULL)
+    if (start == NULL)
     {
         printf("\nThe linked list is empty\n");
         return;
